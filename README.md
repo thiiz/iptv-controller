@@ -85,6 +85,6 @@ GET /providers/test/:identifier
 
 - `PORT` - Server port (default: 3000)
 - `PROVIDER_DEFAULT_URL` - Default provider URL
-- `PROVIDER_CDN4_URL` - URL for CDN4 provider
+- `PROVIDER_OTHER_URL` - URL for OTHER provider
 
 You can add more providers by adding new environment variables following the pattern `PROVIDER_NAME_URL`. 

@@ -1,11 +1,6 @@
 class SessionManager {
     constructor() {
         this.sessions = new Map();
-        // Em ambiente serverless, não é possível usar intervalos
-        // pois o contexto não é mantido entre requisições
-        if (process.env.NODE_ENV !== 'production') {
-            this.cleanupInterval = setInterval(() => this.cleanup(), 1000 * 60 * 15);
-        }
     }
 
     createSession(username, providerId) {

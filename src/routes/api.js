@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const { formatError } = require('../utils');
-const sessionManager = require('../session');
 
 const router = express.Router();
 
@@ -46,15 +45,6 @@ module.exports = (providers) => {
             const fullUrl = `${providerUrl}${apiEndpoint}?${queryParams}`;
 
             const response = await axios.get(fullUrl);
-
-            // Create session for successful login
-            if (endpoint === 'player_api' || endpoint === 'login') {
-                if (response.data && !response.data.error) {
-                    const sessionId = sessionManager.createSession(username, identifier.toLowerCase());
-                    res.setHeader('X-Session-ID', sessionId);
-                }
-            }
-
             res.json(response.data);
         } catch (error) {
             console.error('API request error:', error.message);
@@ -120,18 +110,6 @@ module.exports = (providers) => {
             console.error('Stream request error:', error.message);
             res.status(500).json(formatError(error));
         }
-    });
-
-    router.get('/sessions', (req, res) => {
-        const sessions = sessionManager.getActiveSessions()
-            .map(session => ({
-                username: session.username,
-                providerId: session.providerId,
-                createdAt: new Date(session.createdAt).toISOString(),
-                lastAccess: new Date(session.lastAccess).toISOString()
-            }));
-
-        res.json({ sessions });
     });
 
     return router;

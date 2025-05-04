@@ -62,12 +62,6 @@ GET /api/:identifier/stream/:streamType/:streamId?username={user}&password={pass
 - `username` - IPTV account username
 - `password` - IPTV account password
 
-### Session Management
-
-View active sessions:
-```
-GET /api/sessions
-```
 
 ### Provider Management
 

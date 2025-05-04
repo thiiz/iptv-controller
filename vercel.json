@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "src/routes/api.js": {
-      "runtime": "edge"
+      "runtime": "@vercel/edge@latest"
     }
   },
   "routes": [

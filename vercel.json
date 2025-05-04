@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "functions": {
-    "src/routes/api.js": {
-      "runtime": "@vercel/edge@latest"
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(.*)",
